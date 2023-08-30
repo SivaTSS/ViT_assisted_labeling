@@ -109,14 +109,13 @@ class ImageAnnotatorApp:
             self.loaded_image = image
             photo = ImageTk.PhotoImage(image)
             self.loaded_image_label.config(image=photo)
-            self.loaded_image_label.image = photo  # Keep a reference to avoid garbage collection
+            self.loaded_image_label.image = photo
 
     def annotate_image(self):
         if self.loaded_image is None:
             return
 
-        SOURCE_IMAGE_PATH = self.file_path
-        image = cv2.imread(SOURCE_IMAGE_PATH)
+        image = cv2.imread(self.file_path)
         annotated_image = self.perform_annotation(image)
         pil_annotated_image = Image.fromarray(cv2.cvtColor(annotated_image, cv2.COLOR_BGR2RGB))
         pil_annotated_image.thumbnail((500, 500))

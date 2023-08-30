@@ -41,7 +41,6 @@ def segment(sam_predictor: SamPredictor, image: np.ndarray, xyxy: np.ndarray) ->
 
 
 def annotate_image(image, detections, CLASSES):
-    # annotate image with detections
     box_annotator = sv.BoxAnnotator()
     mask_annotator = sv.MaskAnnotator()
     labels = [f"{CLASSES[class_id]} {confidence:0.2f}" for _, _, confidence, class_id, _ in detections]
